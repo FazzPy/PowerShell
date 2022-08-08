@@ -95,5 +95,29 @@ Komutu ile adında dns geçen komutları bulabilirsiniz.
 (get-command -name *dns*).count
 Komutu ile içinde DNS geçen komutların sayısını görebilirsiniz.
 ```
+<h3>Whatif ve Confirm Parametreleri</h3>
 
+PowerShell ile çok şey yapılabiliyor. Yakında "çok şey" yerine "her şey" de diyebileceğiz. Bu durum da PowerShell'i dikkatli kullanma gereğini ortaya çıkarıyor.
+
+Hemen her komutta bulunan -whatif ve -confirm parametrelerini kullanarak PowerShell komutlarımızı, programlarımızı daha temkinli duruma getirebiliriz.
+
+Whatif parametresi "bunu yapsaydım ne gibi işem gerçekleşecekti?" demek oluyor. Bir komutta bu parametreyi kullandığımızda komut yerine getirilmiyor, yalnızca getirilseydi ne olurdu, bu durum rapor ediliyor.
+
+Örnek olarak, hesap makinesi programı'nı (calculator) durdurmak istediğimizi varsayalım. Komutumuz **stop-process -name calculator** şeklinde olacak.
+
+Komutu bu haliyle verirsek hesap makinesi programı sonlandırılır. Ama komutu **stop-process -name calculator -whatif** şeklinde verirsek program sonlandırılmaz.
+
+Yalnızca komut çalışsaydı ne yapılacağı rapor edilir.
+
+Diğer parametremiz de **-confirm**. Bu parametreyi kullanarak komutun yalnızca biz onay verirsek işletilmesini sağlayabiliriz. Bu da bir derece daha dikkatli olmamızı sağlayacaktır.
+
+**Komut Tarihçesi**
+
+PowerShell oturumunda verdiğiniz komutlar saklanır. Yukarı ve aşağı ok tuşlarınızı kulanarak girilen komutlar arasında dolaşabilirsiniz. Bir oturum içinde verdiğiniz komutların tümünü görmek isterseniz **get-history** komutunu verebilirsiniz. **Clear-History** komutu ile geçmişi temizleyebilirsiniz.
+
+**PowerShell Normal Bilgier bu kadardı. Scripting vb. İçin aşağıya göz atabilirsiniz.**
+
+*PowerShell ISE, Komutları ve Scripting :*
+
+**[PowerShell](https://github.com/FazzPy/PowerShell/blob/main/Belgeler/PowerShell.ps1)**
 
