@@ -43,3 +43,57 @@ Kurulu sistemimizde tanımlı olan aygıt sürücülerini görmek için **get-wi
 Yerel kullanıcıları görüntülemek için **get-localuser** komutunu verebiliriz.
 
 Çalışmakta olan programları görmek için **get-process** komutunu verelim.
+
+**Get-process** komutunda programların uzantılarının (.exe) gibi listelenmediğine dikkat edin.
+
+Şimdi de **Get-process** komutuyla gördüğümüz bir programı, "calculator" programını sonlandıralım.
+
+Bunun için vermemiz gereken komut **stop-process -name calculator**
+
+Bir programı adıyla değil de ID'siyle (kimlik numarası) da sonlandırabilirsiniz. Bunun için vermemiz gereken komut: **stop-process -id 4188**
+
+Yukarıdaki komutu verdiğimizde ID'si 4188 olan programı sonlandıracak.
+
+```
+Şu ana kadar gördüğümüz komutlar hep üzerinde bulunduğumuz makinede çalışıyordu.
+Bu komutları ağdaki bir bilgisayarı yönetmek için de kullanıp o makinelerdeki hizmetleri görüntüleme, 
+makineleri yeniden başlatma gibi işlemleri yapabiliriz.
+Bunu sağlamak için hemen her PowerShell komutunda "-computername" benzeri bir parametre vardır.
+Bu parametreyi kullanarak komutun hangi makine için işlem yapacağını belirtebiliyoruz.
+Örneğin, "anasunucu" adındaki makinede bulunan hizmetleri görüntülemek için vermemiz gereken komut : 
+(get-service -computername anasunucu) Şeklindedir. Bu makineyi kapatmak istersek
+stop-computer -computername anasunucu komutunu kullanabiliriz.
+Eğer kapatmayı zorla isterseniz "-force" parametresi yazabilirsiniz.
+```
+
+**Yardım Bilgisi**
+
+Peki, stop-process'in parametreleri olan -name ya da -id ifadelerini nereden biliyoruz? Bu komutun başka parametreleri, örnek kullanımları var mıdır?
+
+Bu soruların yanıtını **get-help** komutuyla alabiliriz. Get-help komutu bir PowerShell komutu hakkında bilgi verir.
+
+```
+get-help stop-process
+get-help start-process
+```
+
+Yardım bilgisi bu haliyle çok yardımcı değil. Özellikle de kullanım örneklerini göremiyoruz. Stop-process komutunun örneklerini almak için:
+
+**get-help stop-process -examples** şeklinde yazabiliriz.
+
+Eğer bir komuta ilişkin yardım bilgilerinin hepsini (Örneklerle birlikte) almak istersek komutu **get-help stop-process -full** Şeklinde vermeliyiz.
+
+Komutu biliyorsak onun kullanımıyla ilgili bilgileri get-help komutundan alabiliyoruz. Peki, get-process, stop-process gibi hangi komutlar var PowerShell'de?
+
+Bu sorunun yanıtını da **get-command** ile alıyoruz. Get-command komutu kullanılabilecek komutları listeler.
+
+**(getcommand).count** komutu ile bilgisayarınızda kaç adet komut olduğunu görebilirsiniz.
+
+```
+command -name *dns*
+Komutu ile adında dns geçen komutları bulabilirsiniz.
+(get-command -name *dns*).count
+Komutu ile içinde DNS geçen komutların sayısını görebilirsiniz.
+```
+
+
