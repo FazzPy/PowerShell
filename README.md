@@ -11,3 +11,5 @@
 **Bu yüzden PowerShell'i öğrenmek daha da önem kazandı.**
 
 <hr>
+
+[Devamı için...](https://github.com/FazzPy/PowerShell/blob/main/PowerShell.md)
