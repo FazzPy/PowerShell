@@ -252,3 +252,14 @@ Get-aduser -filter {Office -eq "Ek Bina"} -searchbase "ou=GothamBolgei dc=anadol
 ```
 "-filter" parametresini kullanabilecek komutların listesini amak için get-command -paramatername filter komutunu verebiliriz.
 
+<h3>Where-object Komutu</h3>
+
+**Komutların çıktısını süzmede en çok kulandığımız komut where-object (kısaca where) komutudur.**
+
+Bu komuta örnek oarak disk bölümlerini listeleyen **Get-wmiobject win32_logical-disk** komutuna bakalım. Bu komutu verdiğimizd çıktı olarak bigisayarımızdaki disk komutuna bakalım. Bu komutu verdiğimizde çıktı olarak bilgisayarımızdaki sabit disk bölümleri, DVD sürücüler, USB sürücüler listelenecektir. Bu bilgi yararlıdır ama yalnızca boş alanı 5 GB'ın altında düşmüş disk bölümlerini görmek isteyebiliriz. O zaman devreye Where komutu girer. Aşağıdaki komut tam istetdiğimizi yapar:
+
+```powershell
+Get-wmiobject win32_logicalldisk | where {$_.freespace/1GB -lt 5}
+```
+
+Yukarıdaki komutta önce disk bölümlerinin listesini üretiyoruz. Sonra  üretilen listeyi Where komutuna gönderiyoruz. Where komutu kendisine gelen bilgiyi teker teker betik bloğu içindeki ifadeye karşılaştırıyor. Blok içindeki ifade, disk bölümlerinin "freespace" özelliğini bir sabit olan ve 1 GigaByte'a karşılık gelen "1GB"ye bölüyor. Çıkan sonuç 5'ten küçükse (boş alan 5GB'tan küçükse) disk bölümü görüntüleniyor.
